@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, FlatList} from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, ScrollView} from 'react-native';
 
 type Props = {};
 
@@ -23,10 +23,18 @@ export default class Test extends Component<Props> {
         <Text>This is test component</Text>
         <TextInput type="text" onChangeText={this.handleChange} id="text" value={this.state.text}></TextInput>
         <Button onPress={this.handleOnPress} title="Click Me"  />
-        <FlatList
-          data={[1,2,3,4,5]}
-          renderItem={({item}) => <Text>{item}</Text>}
-        />
+        <ScrollView>
+        <Text style={{fontSize:96}}>Scroll</Text>
+        <Text style={{fontSize:96}}>Scroll</Text>
+        <Text style={{fontSize:96}}>Scroll</Text>
+        <Text style={{fontSize:96}}>Scroll</Text>
+        <Text style={{fontSize:96}}>Scroll</Text>
+        <Text style={{fontSize:96}}>Scroll</Text>
+        <Text style={{fontSize:96}}>Scroll</Text>
+        <Text style={{fontSize:96}}>Scroll</Text>
+        <Text style={{fontSize:96}}>Scroll</Text>
+
+        </ScrollView>
       </View>
     );
   }
