@@ -26,7 +26,7 @@ export default class Test extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Who's playing?</Text>
+        {this.state.done ? <Text style={styles.welcome}>Its CAMBIO'clock!</Text> : <Text style={styles.welcome}>Who's playing?</Text>}
         {this.state.players ? this.state.players.map(player => <Text>{player}</Text>) : null}
         {this.state.done ? null :
           <View style={styles.welcome}>
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   },
   welcome: {
     fontSize: 20,
-    textAlign: 'center',
+    alignItems: 'center',
     margin: 10,
   },
   instructions: {
