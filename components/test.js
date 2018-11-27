@@ -6,7 +6,7 @@ type Props = {};
 export default class Test extends Component<Props> {
 
   state={
-    text:"player name",
+    text:"",
     players:[],
     done:false
   }
@@ -16,7 +16,7 @@ export default class Test extends Component<Props> {
   }
 
   handleOnPress = () => {
-    this.setState({players: [...this.state.players, this.state.text], text:'player name'})
+    this.setState({players: [...this.state.players, this.state.text], text:''})
   }
 
   handleSamplePress = () =>{
@@ -34,11 +34,11 @@ export default class Test extends Component<Props> {
         {this.state.players ? this.state.players.map(player => <Text>{player}</Text>) : null}
         {this.state.done ? null :
           <View style={styles.welcome}>
-          <TextInput type="text" onChangeText={this.handleChange} id="text" value={this.state.text}></TextInput>
+          <TextInput type="text" onChangeText={this.handleChange} id="text" value={this.state.text} placeholder="player name"></TextInput>
           <Button onPress={this.handleOnPress} title="add player"  />
           </View>
         }
-        <Button onPress={this.handleSamplePress} title="done" />
+        {this.state.done ? <Button onPress={this.handleSamplePress} title="reroll" /> : <Button onPress={this.handleSamplePress} title="done" />}
         {this.state.done ? <Button onPress={this.handleResetPress} title="reset" /> : null}
       </View>
     );

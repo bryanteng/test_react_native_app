@@ -22,7 +22,7 @@ export default class App extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <Test random={"hi"}/>
+        <Test />
       </View>
     );
   }
