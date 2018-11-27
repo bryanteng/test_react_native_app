@@ -23,6 +23,10 @@ export default class Test extends Component<Props> {
     this.setState({players: sample(this.state.players), done:true})
   }
 
+  handleResetPress = () =>{
+    this.setState({players: [], done:false})
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -34,7 +38,8 @@ export default class Test extends Component<Props> {
           <Button onPress={this.handleOnPress} title="add player"  />
           </View>
         }
-        <Button onPress={this.handleSamplePress} title="randomize order" />
+        <Button onPress={this.handleSamplePress} title="done" />
+        {this.state.done ? <Button onPress={this.handleResetPress} title="reset" /> : null}
       </View>
     );
   }
@@ -69,5 +74,5 @@ function sample(array){
         array_length--
     }
 	new_array.push(temp)
-    return new_array.flat()
+  return new_array.flat()
 }
