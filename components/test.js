@@ -6,7 +6,9 @@ type Props = {};
 export default class Test extends Component<Props> {
 
   state={
-    text:"placeholder"
+    text:"player name",
+    players:[],
+    done:false
   }
 
   handleChange = (event) =>{
@@ -14,27 +16,25 @@ export default class Test extends Component<Props> {
   }
 
   handleOnPress = () => {
-    console.log(this.props)
+    this.setState({players: [...this.state.players, this.state.text], text:'player name'})
+  }
+
+  handleSamplePress = () =>{
+    this.setState({players: sample(this.state.players), done:true})
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Text>This is test component</Text>
-        <TextInput type="text" onChangeText={this.handleChange} id="text" value={this.state.text}></TextInput>
-        <Button onPress={this.handleOnPress} title="Click Me"  />
-        <ScrollView>
-        <Text style={{fontSize:96}}>Scroll</Text>
-        <Text style={{fontSize:96}}>Scroll</Text>
-        <Text style={{fontSize:96}}>Scroll</Text>
-        <Text style={{fontSize:96}}>Scroll</Text>
-        <Text style={{fontSize:96}}>Scroll</Text>
-        <Text style={{fontSize:96}}>Scroll</Text>
-        <Text style={{fontSize:96}}>Scroll</Text>
-        <Text style={{fontSize:96}}>Scroll</Text>
-        <Text style={{fontSize:96}}>Scroll</Text>
-
-        </ScrollView>
+        <Text>Who's playing?</Text>
+        {this.state.players ? this.state.players.map(player => <Text>{player}</Text>) : null}
+        {this.state.done ? null :
+          <View style={styles.welcome}>
+          <TextInput type="text" onChangeText={this.handleChange} id="text" value={this.state.text}></TextInput>
+          <Button onPress={this.handleOnPress} title="add player"  />
+          </View>
+        }
+        <Button onPress={this.handleSamplePress} title="randomize order" />
       </View>
     );
   }
@@ -58,3 +58,16 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 });
+
+function sample(array){
+	let temp = [...array]
+    let new_array = []
+    let array_length = temp.length
+    for( i=0; i < temp.length; i++){
+		let rand = Math.floor(Math.random()* array_length)
+        new_array.push(temp.splice(rand,1))
+        array_length--
+    }
+	new_array.push(temp)
+    return new_array.flat()
+}
