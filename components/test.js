@@ -24,6 +24,10 @@ export default class Test extends Component<Props> {
     this.setState({players: sample(this.state.players), done:true})
   }
 
+  handleDonePress = () =>{
+    this.setState({done:true})
+  }
+
   handleResetPress = () =>{
     this.setState({players: [], done:false})
   }
@@ -39,7 +43,7 @@ export default class Test extends Component<Props> {
           <Button onPress={this.handleOnPress} title="add player"  />
           </View>
         }
-        {this.state.done ? <Button onPress={this.handleSamplePress} title="reroll" /> : <Button onPress={this.handleSamplePress} title="done" />}
+        {this.state.done ? <Button onPress={this.handleSamplePress} title="randomize" /> : <Button onPress={this.handleDonePress} title="done" />}
         {this.state.done ? <Button onPress={this.handleResetPress} title="reset" /> : null}
         <Table players={this.state.players}/>
       </View>
