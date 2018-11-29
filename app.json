@@ -1,4 +1,5 @@
 {
   "name": "appName",
-  "displayName": "appName"
+  "displayName": "appName",
+  "expo": { "sdkVersion": "25.0.0" }
 }
