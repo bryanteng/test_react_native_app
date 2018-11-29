@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Table from './table'
 import { StyleSheet, Text, View, TextInput, Button, ScrollView} from 'react-native';
 
 type Props = {};
@@ -40,6 +41,7 @@ export default class Test extends Component<Props> {
         }
         {this.state.done ? <Button onPress={this.handleSamplePress} title="reroll" /> : <Button onPress={this.handleSamplePress} title="done" />}
         {this.state.done ? <Button onPress={this.handleResetPress} title="reset" /> : null}
+        <Table players={this.state.players}/>
       </View>
     );
   }
