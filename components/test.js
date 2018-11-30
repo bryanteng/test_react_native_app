@@ -45,7 +45,7 @@ export default class Test extends Component<Props> {
         }
         {this.state.done ? <Button onPress={this.handleSamplePress} title="randomize" /> : <Button onPress={this.handleDonePress} title="done" />}
         {this.state.done ? <Button onPress={this.handleResetPress} title="reset" /> : null}
-        <ScoreTable players={this.state.players}/>
+        {this.state.done ? <ScoreTable players={this.state.players}/> : null}
       </View>
     );
   }

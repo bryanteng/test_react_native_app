@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ScrollView} from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Button} from 'react-native';
 import { Table, Row, Rows } from 'react-native-table-component';
 
 type Props = {}
@@ -7,10 +7,12 @@ export default class ScoreTable extends Component<Props>{
   constructor(Props){
     super(Props)
     this.state={
-      tableHead: [" ","bryan", "kyle","dan","scar","kevin"],
+      tableHead: ["", ...Props.players],
       tableData: []
     }
   }
+
+
   render(){
     console.log(this.props.players)
     const state = this.state;
@@ -50,6 +52,7 @@ export default class ScoreTable extends Component<Props>{
           </View>
         </ScrollView> :
       null }
+      <Button onPress={this.handleOnPress} title="click for row"/>
       </View>
     )
   }
