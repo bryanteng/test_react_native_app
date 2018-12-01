@@ -39,7 +39,7 @@ export default class Test extends Component<Props> {
         {this.state.players ? this.state.players.map(player => <Text>{player}</Text>) : null}
         {this.state.done ? null :
           <View style={styles.welcome}>
-          <TextInput type="text" onChangeText={this.handleChange} id="text" value={this.state.text} placeholder="player name"></TextInput>
+          <TextInput type="text" onChangeText={this.handleChange} id="text" value={this.state.text} textAlign={'center'} placeholder="player name"></TextInput>
           <Button onPress={this.handleOnPress} title="add player"  />
           </View>
         }

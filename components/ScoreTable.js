@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ScrollView, Button} from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Button, TextInput} from 'react-native';
 import { Table, Row, Rows } from 'react-native-table-component';
 
 type Props = {}
@@ -14,30 +14,35 @@ export default class ScoreTable extends Component<Props>{
   }
 
   componentDidMount(){
-    this.setState({widthArr: this.state.tableHead.map(name => name.length < 6 ? 60 : name.length*10) })
+    let textInput = <TextInput type="text" id="text" textAlign={'center'}>0</TextInput>
+    this.setState({widthArr: this.state.tableHead.map(name => name.length < 6 ? 60 : name.length*10), tableData: [this.state.tableHead.map(name => textInput)] })
   }
 
+  addRow = () =>{
+    let textInput = <TextInput type="text" id="text" textAlign={'center'} >0</TextInput>
+    let empty_row = this.state.widthArr.map(cell => textInput)
+    this.setState({tableData: [...this.state.tableData, empty_row]})
+  }
 
   render(){
     console.log(this.props.players)
     const state = this.state;
-    const tableData = [["1", "2", "3","4","5","6"],["7", "8", "9","10","11","12"]];
 
     return(
       <View>
         {this.props.players ? <ScrollView horizontal={true}>
           <View>
-          <Button onPress={this.handleOnPress} title="click for row"/>
+          <Button onPress={this.addRow} title="click to add row"/>
             <Table borderStyle={{borderColor: '#C1C0B9'}}>
               <Row data={state.tableHead} style={styles.header} widthArr={state.widthArr} textStyle={styles.text}/>
             </Table>
             <ScrollView style={styles.dataWrapper}>
               <Table borderStyle={{borderColor: '#C1C0B9'}}>
                 {
-                  tableData.map((rowData, index) => (
+                  state.tableData.map((rowData, index) => (
                     <Row
                       key={index}
-                      data={rowData}
+                      data={[`${index}`,[...rowData.slice(1)]].flat()}
                       widthArr={state.widthArr}
                       style={[styles.row, index%2 && {backgroundColor: '#F7F6E7'}]}
                       textStyle={styles.text}
