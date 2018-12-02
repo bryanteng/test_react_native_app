@@ -30,9 +30,9 @@ export default class ScoreTable extends Component<Props>{
 
     return(
       <View>
+      <Button onPress={this.addRow} title="click to add row"/>
         {this.props.players ? <ScrollView horizontal={true}>
           <View>
-          <Button onPress={this.addRow} title="click to add row"/>
             <Table borderStyle={{borderColor: '#C1C0B9'}}>
               <Row data={state.tableHead} style={styles.header} widthArr={state.widthArr} textStyle={styles.text}/>
             </Table>
